@@ -3,40 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clicker</title>
+    <title>Heartclicker | by KaRZa13</title>
+    <link rel="icon" type="image/png" href="assets/img/heart.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <label id="scoreElement" >0</label><br>
-            <button id="increment">Vendre un coeur</button>
-            <button id="resetScore">Reset score</button>
-        </header>
-        <div class="object" id="clinics">
-            <label id="labelClinic">0</label>
-            <button id="buyClinic">Ouvrir une clinique</button>
-            <label id="clinicPrice">150</label>
-            <button id="resetClinic">Reset</button>
+    <header class="banner">
+        <div id="title">
+            <img id="titleImg" src="assets/img/heart.png" width="200" height="200">
+            <div class="rubik-wet-paint-regular" id="titleTxt">Heartclicker</div>
         </div>
-        <div class="object" id="gravedigger">
-            <label id="labelGrave">0</label>
-            <button id="buyGrave">Engager un fossoyeur</button>
-            <label id="gravePrice">1500</label>
-            <button id="resetGrave">Reset</button>
+    </header>
+    <div class="game">
+        <div class="leftColumn">
+            <label class="rubik-wet-paint-regular" id="scoreLabel" >0</label>
+            <div class="heartPerSec rubik-wet-paint-regular">Par seconde : <span id="heartsPerSecCounter">0</span></div>
+            <button id="resetScore">Reset score</button> <!--dev only--->
+            <img id="heart" src="assets/img/heart.png" width="300" height="300">
         </div>
-        <div class="object" id="necromancer">
-            <label id="labelNecro">0</label>
-            <button id="buyNecro">Engager Bob le nécromencien</button>
-            <label id="necroPrice">20000</label>
-            <button id="resetNecro">Reset</button>
+        <div class="midColomn">
+            <div class="object" id="clinics">
+                <label id="labelClinic">0</label>
+                <button id="buyClinic">Ouvrir une clinique</button>
+                <label id="clinicPrice">15</label>
+            </div>
+            <div class="object" id="gravedigger">
+                <label id="labelGrave">0</label>
+                <button id="buyGrave">Engager un fossoyeur</button>
+                <label id="gravePrice">100</label>
+            </div>
+            <div class="object" id="necromancer">
+                <label id="labelNecro">0</label>
+                <button id="buyNecro">Engager Bob le nécromencien</button>
+                <label id="necroPrice">1100</label>
+            </div>
         </div>
-        <div class="object"></div>
-        <div class="object"></div>
-        <div class="object"></div>
-        <div class="object"></div>
     </div>
 
     <script src="js/script.js"></script>
+    <script src="js/anim.js"></script>
 </body>
 </html>

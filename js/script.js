@@ -1,39 +1,36 @@
-// Prix
-const prices = [100, 1500, 20000, 100000]
-
 // Cliniques
 const buyClinic = document.querySelector("#buyClinic")
 const clinicPrice = document.querySelector("#clinicPrice")
 const labelClinic = document.querySelector("#labelClinic")
-const resetClinic = document.querySelector("#resetClinic")
-let clinicCost = 100
+let clinicCost = 15
 let clinic = 0
 
 // Gravedigger
 const buyGravedigger = document.querySelector("#buyGrave")
 const gravediggerPrice = document.querySelector("#gravePrice")
 const gravediggerLabel = document.querySelector("#labelGrave")
-const resetGravedigger = document.querySelector("#resetGrave")
-let gravediggerCost = 1500
+let gravediggerCost = 100
 let gravedigger = 0
 
 // Necromencien
 const buyNecro = document.querySelector("#buyNecro")
 const necroPrice = document.querySelector("#necroPrice")
 const necroLabel = document.querySelector("#labelNecro")
-const resetNecro = document.querySelector("#resetNecro")
-let necroCost = 20000
+let necroCost = 1100
 let necro = 0
 
 
 // Incrémentation
-const increment = document.querySelector("#increment")
-const reset = document.querySelector("#resetScore")
-let scoreLabel = document.querySelector("#scoreElement")
+const increment = document.querySelector("#heart")
+const reset = document.querySelector("#resetScore") // dev only
+let scoreLabel = document.querySelector("#scoreLabel")
+const heartsPerSecLabel = document.querySelector("#heartsPerSecCounter")
 let score = 100000
 let heartsPerSecond = 0
 
-
+const updateHeartsPerSecDisplay = () => {
+    heartsPerSecLabel.textContent = (heartsPerSecond*100).toFixed(1)
+}
 
 // Fonction pour incrémenter automatiquement
 const passiveIncrement = () => {
@@ -41,7 +38,7 @@ const passiveIncrement = () => {
     scoreLabel.textContent = Math.round(score)
 }
 
-setInterval(passiveIncrement, 1)
+setInterval(passiveIncrement, 10)
 
 // Incrémentation manuelle
 increment.addEventListener("click", () => {
@@ -59,63 +56,38 @@ reset.addEventListener("click", () => {
 buyClinic.addEventListener("click", () => {
 
     if (score >= clinicCost) {
-        score -= 100
+        score -= clinicCost
         clinic++
         labelClinic.textContent = clinic
-        heartsPerSecond += 0.005
-        clinicCost = Math.round(clinicCost *= 1.3)
+        heartsPerSecond += 0.001
+        clinicCost = Math.round(clinicCost *= 1.15)
         clinicPrice.textContent = clinicCost
-    } else {
+        updateHeartsPerSecDisplay()
     }
-})
-
-// Reset clinique (dev only)
-resetClinic.addEventListener("click", () => {
-    heartsPerSecond -= 0.005 * clinic;
-    clinicCost = 100
-    clinic = 0
-    clinicPrice.textContent = clinicCost
-    labelClinic.textContent = clinic
 })
 
 // Engager un fossoyeur 
 buyGravedigger.addEventListener("click", () => {
     if (score >= gravediggerCost) {
-        score -= 1500
+        score -= gravediggerCost
         gravedigger++
         gravediggerLabel.textContent = gravedigger
-        heartsPerSecond += 0.075
-        gravediggerCost = Math.round(gravediggerCost *= 1.3)
+        heartsPerSecond += 0.01
+        gravediggerCost = Math.round(gravediggerCost *= 1.15)
         gravediggerPrice.textContent = gravediggerCost
+        updateHeartsPerSecDisplay()
     }
-})
-
-// Reset fossoyeur (dev only)
-resetGravedigger.addEventListener("click", () => {
-    heartsPerSecond -= 0.075 * gravedigger
-    gravediggerCost = 1500
-    gravedigger = 0
-    gravediggerPrice.textContent = gravediggerCost
-    gravediggerLabel.textContent = gravedigger
 })
 
 // Engager un nécromencien
 buyNecro.addEventListener("click", () => {
-    if (score >= 20000) {
+    if (score >= necroCost) {
         score -= necroCost
         necro++
         necroLabel.textContent = necro
-        heartsPerSecond += 0.2
-        necroCost = Math.round(necroCost *= 1.3)
+        heartsPerSecond += 0.08
+        necroCost = Math.round(necroCost *= 1.15)
         necroPrice.textContent = necroCost
+        updateHeartsPerSecDisplay()
     }
-})
-
-// Reset nécromencien 
-resetNecro.addEventListener("click", () => {
-    heartsPerSecond -= 0.2 * necro
-    necroCost = 20000
-    necro = 0
-    necroPrice.textContent = necroCost
-    necroLabel.textContent = necro
 })
