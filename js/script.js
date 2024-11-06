@@ -19,12 +19,18 @@ const necroLabel = document.querySelector("#labelNecro")
 let necroCost = 1100
 let necro = 0
 
+// Upgrades
+
+const upgrade = document.querySelector('#upClick')
+
+
 
 // Incrémentation
-const increment = document.querySelector("#heart")
+const incrementButton = document.querySelector("#heart")
 const reset = document.querySelector("#resetScore") // dev only
 let scoreLabel = document.querySelector("#scoreLabel")
 const heartsPerSecLabel = document.querySelector("#heartsPerSecCounter")
+let increment = 1
 let score = 100000
 let heartsPerSecond = 0
 
@@ -41,10 +47,16 @@ const passiveIncrement = () => {
 setInterval(passiveIncrement, 10)
 
 // Incrémentation manuelle
-increment.addEventListener("click", () => {
-    score++
+incrementButton.addEventListener("click", () => {
+    score += increment
     scoreLabel.textContent = Math.round(score)
 });
+
+// Upgrade incrémentation
+upgrade.addEventListener("click",() => {
+    increment *= 2
+    upgrade.disabled = true
+})
 
 // Reset le score (dev only)
 reset.addEventListener("click", () => {
